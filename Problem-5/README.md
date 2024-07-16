@@ -12,6 +12,6 @@ file
 
 - HOST for example localhost
 - PORT for example 4004
-- DB_URL for example
+- DB_URL for example mongodb://127.0.0.1:27017/user
 
 Step 4: Go to the Problem-5 folder and run the npm run start command
