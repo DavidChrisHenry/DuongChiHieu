@@ -1,5 +1,7 @@
 <!-- @format -->
 
+# Problem 6
+
 # `score-update` Module Documentation
 
 ## Overview

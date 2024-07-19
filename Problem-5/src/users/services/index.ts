@@ -1,8 +1,7 @@
 /** @format */
 
 import User, { IUser } from "../schema";
-import { CreateUserDTO } from "../DTO/create-user.dto";
-import { UpdateUserDTO } from "../DTO/update-user.dto";
+import { CreateUserDTO, UpdateUserDTO } from "../DTO";
 
 export const getAllUsers = async (): Promise<IUser[]> => {
   try {

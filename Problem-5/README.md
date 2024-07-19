@@ -15,3 +15,7 @@ file
 - DB_URL for example mongodb://127.0.0.1:27017/user
 
 Step 4: Go to the Problem-5 folder and run the npm run start command
+
+- You can test APIs in the url: HOST:PORT/users
+- HTTP METHOD is GET(get by id and get all users), POST, PUT, DELETE The POST
+  and PUT methods use the content name, email, country.
