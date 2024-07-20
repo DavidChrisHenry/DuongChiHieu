@@ -12,7 +12,29 @@ import { IUser } from "../schema";
 
 const router = Router();
 
-// GET all users
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: User management
+ */
+
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Retrieve a list of users
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: A list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ */
 router.get("/", async (req: Request, res: Response) => {
   try {
     const users = await getAllUsers();
@@ -22,7 +44,29 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-// GET a single user by ID
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Retrieve a single user by ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user ID
+ *     responses:
+ *       200:
+ *         description: A user object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: User not found
+ */
 router.get("/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
@@ -33,7 +77,28 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
-// POST create a new user
+/**
+ * @swagger
+ * /users:
+ *   post:
+ *     summary: Create a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: The created user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Server error
+ */
 router.post("/", async (req: Request, res: Response) => {
   const newUser: IUser = req.body;
   try {
@@ -44,7 +109,35 @@ router.post("/", async (req: Request, res: Response) => {
   }
 });
 
-// PUT update an existing user
+/**
+ * @swagger
+ * /users/{id}:
+ *   put:
+ *     summary: Update an existing user
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: The updated user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: User not found
+ */
 router.put("/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
@@ -55,12 +148,30 @@ router.put("/:id", async (req: Request, res: Response) => {
   }
 });
 
-// DELETE a user
+/**
+ * @swagger
+ * /users/{id}:
+ *   delete:
+ *     summary: Delete a user
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user ID
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       404:
+ *         description: User not found
+ */
 router.delete("/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
-    const deletedUser = await deleteUser(id);
-    res.status(200).send("Delete user succeeded");
+    await deleteUser(id);
+    res.status(200).send("User deleted successfully");
   } catch (error) {
     res.status(404).send(error);
   }

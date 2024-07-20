@@ -1,12 +1,16 @@
 /** @format */
 
-import express, { Application } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import router from "./users/routes";
+import setupSwagger from "./swagger";
 dotenv.config();
 
-const app: Application = express();
+const app = express();
+//swagger
+setupSwagger(app);
+
 const port = process.env.PORT || 3000;
 const db_url =
   process.env.DB_URL || ("mongodb://localhost:27017/user" as string);

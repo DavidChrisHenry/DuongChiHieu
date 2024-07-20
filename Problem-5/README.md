@@ -19,3 +19,7 @@ Step 4: Go to the Problem-5 folder and run the npm run start command
 - You can test APIs in the url: HOST:PORT/users
 - HTTP METHOD is GET(get by id and get all users), POST, PUT, DELETE The POST
   and PUT methods use the content name, email, country.
+
+## Updated: I have installed swagger to test the API for the project
+
+Swagger url: HOST:PORT/swagger
